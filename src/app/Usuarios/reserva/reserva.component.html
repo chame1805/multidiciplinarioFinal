@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div>
+    <h1>Reserva</h1>
+    <div id="container">
+      
+      <div id="div2">
+        <div id="mini_div">
+          <p>Asientos disponibles</p>
+          <p id="asientos-disponibles">{{ resultadoFin }}</p>
+          <p>Ingresa la cantidad a reservar</p>
+          <div id="cantidad-container">
+            <button id="decrementar" (click)="decrementar()">-</button>
+            <input id="cantidad" type="text" [value]="cantidad" readonly>
+            <button id="incrementar" (click)="incrementar()">+</button>
+          </div>
+          <button id="btn1" (click)="reservar()">Reservar</button>
+          <button id="btn2">Cancelar</button>
+        </div>
+      </div>
+      <div id="div1">
+        <img id="img1" src="./urban.webp" alt="Imagen del colectivo">
+      </div>
+    </div>
+  
+    
+    <div id="modal" *ngIf="mostrarModal">
+      <div id="modal-content">
+        <p>{{ mensajeModal }}</p>
+        <button id="cerrar-modal" (click)="cancelarReserva()">Cerrar</button>
+      </div>
+    </div>
+  
+    <div id="modal-confirmacion" *ngIf="mostrarConfirmacion">
+      <div id="modal-content">
+        <p>{{ mensajeModal }}</p>
+        <button id="confirmar" (click)="confirmarReserva()">Confirmar</button>
+        <button id="cancelar" (click)="cancelarReserva()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  
