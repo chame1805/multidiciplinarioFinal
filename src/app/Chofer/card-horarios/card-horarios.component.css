@@ -1,0 +1,46 @@
+.route-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px; /* Espacio entre las tarjetas */
+    padding: 20px;
+    margin-top: 100px;
+  }
+  
+  .route-card {
+    flex: 1 1 300px; /* Tamaño flexible de las tarjetas */
+    max-width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    font-size: 18px;
+  }
+  
+  .route-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .van-image {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .route-details {
+    margin-left: 20px;
+    flex-grow: 1;
+  }
+  
+  .reserve-button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  

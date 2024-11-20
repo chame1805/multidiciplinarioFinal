@@ -1,0 +1,73 @@
+<app-header></app-header>
+<div class="container">
+  <h2>Consultar Horarios</h2>
+
+  <!-- Contenedor de filtros -->
+  <div class="filters-container">
+    <div class="filter-group">
+      <label for="fecha">Fecha:</label>
+      <input
+        type="date"
+        id="fecha"
+        [(ngModel)]="fechaSeleccionada"
+        (input)="filtrarHorarios()"
+      />
+    </div>
+
+    <div class="filter-group">
+      <label for="terminal">Terminal:</label>
+      <select
+        id="terminal"
+        [(ngModel)]="terminalSeleccionada"
+        (change)="filtrarHorarios()"
+      >
+        <option value="">Selecciona una terminal</option>
+        <option value="Suchiapa">Suchiapa</option>
+        <option value="Tuxtla">Tuxtla</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Lista de horarios -->
+  <div class="route-container" *ngIf="horariosFiltrados.length > 0">
+    <div *ngFor="let horario of horariosFiltrados" class="horario-card">
+      <div class="route-item">
+        <img src="urban.webp" alt="Van Image" class="van-image" />
+        <div class="route-details">
+          <p>{{ horario.unidad }} - {{ horario.viaje }}</p>
+          <p>Fecha: {{ horario.fecha }}</p>
+          <p>Hora: {{ horario.hora || 'Horario no disponible en este momento' }}</p>
+          <button class="reserve-button" (click)="abrirModal(horario)">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje cuando no hay horarios -->
+  <div *ngIf="horariosFiltrados.length === 0" class="no-schedule-message">
+    <p>No hay horarios disponibles para los filtros seleccionados.</p>
+  </div>
+<!-- Modal -->
+<div *ngIf="mostrarModal" class="modal-overlay">
+  <div class="modal-content">
+    <h3 class="modal-header">Seleccionar Origen y Destino</h3>
+    <div class="modal-form">
+      <label for="origen">Origen:</label>
+      <select id="origen" [(ngModel)]="origenSeleccionado">
+        <option value="">Selecciona tu lugar de origen</option>
+        <option *ngFor="let lugar of lugares" [value]="lugar">{{ lugar }}</option>
+      </select>
+    </div>
+    <div class="modal-form">
+      <label for="destino">Destino:</label>
+      <select id="destino" [(ngModel)]="destinoSeleccionado">
+        <option value="">Selecciona tu lugar de destino</option>
+        <option *ngFor="let lugar of lugares" [value]="lugar">{{ lugar }}</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button (click)="confirmarReserva()">Confirmar</button>
+      <button class="cancel-button" (click)="cerrarModal()">Cancelar</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<app-header-c>  </app-header-c>
+
+<img id="but-agregar" src="agregar.png" alt="" (click)="abrirModal()">
+<h1 id="tex">Horario</h1>
+<div id="general">
+    <div id="fecha">
+        <label for="fecha">Fecha:</label>
+        <input type="date" [(ngModel)]="horario.fecha" (input)="filtrarUnidades()"> <!-- Input de fecha -->
+    </div>
+
+    <div id="option">
+
+        <label for="viaje">Terminal:</label>
+        <select id="viaje" [(ngModel)]="viajeSeleccionado" (change)="filtrarUnidades()">
+            <option value="">Selecciona una terminal</option>
+            <option value="Suchiapa">Suchiapa</option>
+            <option value="Tuxtla">Tuxtla</option>
+            <!-- Añadir más opciones según sea necesario -->
+        </select>
+    </div>
+</div>
+<div *ngIf="mostrarModal" class="modal-overlay">
+    <div class="modal-content">
+      <h3>Añadir Horario</h3>
+  
+      <label for="calendario">Calendario:</label>
+      <input type="date" [(ngModel)]="horario.fecha" (input)="filtrarUnidades()">
+  
+      <label for="viaje-modal">Terminal:</label>
+      <select id="viaje-modal" [(ngModel)]="horario.viaje" (change)="filtrarUnidades()">
+        <option value="">Selecciona una terminal</option>
+        <option value="Suchiapa">Suchiapa</option>
+        <option value="Tuxtla">Tuxtla</option>
+      </select>
+  
+      <label for="hora">Horario:</label>
+      <input type="text" id="hora" [(ngModel)]="horario.hora" placeholder="Ingresa el horario" />
+  
+      <label for="unidad">Unidad:</label>
+      <input type="text" id="unidad" [(ngModel)]="horario.unidad" placeholder="Ingresa la unidad">
+  
+      <div style="text-align: right; margin-top: 20px;">
+        <button (click)="cerrarModal()">Cerrar</button>
+        <button (click)="envioDatos()" style="margin-left: 10px;">Enviar</button>
+      </div>
+    </div>
+  </div>
+  
+  
+<app-card-horarios  [unidades]="unidadesFiltrada"></app-card-horarios>
+    

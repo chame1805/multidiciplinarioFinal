@@ -1,0 +1,133 @@
+/* Estilos generales del contenedor principal y botones */
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  #div1 {
+    width: 40%; /* Reducido para hacer la imagen más pequeña */
+  }
+  
+  #img1 {
+    width: 100%;
+    max-width: 800px; /* Limitar el tamaño de la imagen */
+    margin: 0 auto;
+  }
+  
+  #div2 {
+    width: 60%; /* Aumentado el tamaño del contenedor de los botones */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 40px;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 50px;
+    margin: 20px;
+  }
+  
+  #mini_div {
+    border: 1px solid black; 
+    border-radius: 8px;
+    width: 80%;
+    padding: 40px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  #asientos-disponibles {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  #btn-liberar {
+    font-size: 30px;
+    padding: 20px 40px; 
+    background-color: #080101; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+    width: 300px; 
+    height: 80px; 
+    margin-top: 30px; 
+  }
+  
+  #btn-liberar:hover {
+    background-color: #630000; 
+  }
+  
+  
+  #modal, #modal-confirmacion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* para asegurarse que esté en el frente */
+  }
+  
+  #modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 400px; /* Aumentar el tamaño */
+    max-width: 90%;
+    border: 2px solid black;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+  }
+  
+  #modal-content p {
+    font-size: 20px; /* Ajustar tamaño de texto */
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  #cerrar-modal, #confirmar, #cancelar {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 150px; /* Aumentar tamaño de los botones */
+  }
+  
+  #confirmar {
+    border: 2px solid green;
+    color: green;
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 16px;
+    margin-right: 15px;
+    cursor: pointer;
+    width: 130px;
+    height: 40px;
+  }
+  
+  #cancelar, #cerrar-modal {
+    border: 2px solid black;
+    color: white;
+    background-color: black;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 130px;
+    height: 40px;
+  }
+  
