@@ -4,6 +4,8 @@ import { UsuarioHorarioComponent } from '../usuario-horario-component/usuario-ho
 import { FormsModule } from '@angular/forms';
 import { AutentificacionModule } from "../../autentificacion/autentificacion.module";
 import { ReservaComponent } from '../reserva/reserva.component';
+import { MetodoComponent } from '../metodo/metodo.component';
+import { PagoComponent } from '../../pago/pago.component';
 
 
 
@@ -11,6 +13,8 @@ import { ReservaComponent } from '../reserva/reserva.component';
   declarations: [
     UsuarioHorarioComponent,
     ReservaComponent,
+    MetodoComponent,
+    PagoComponent
   ],
   imports: [
     CommonModule,
