@@ -1,0 +1,71 @@
+
+h1{
+    text-align: center;
+    margin-top: 60px;
+}
+#pago{
+    height: 150px;
+    width: 60%;
+    border: 1px solid black;
+    text-align: center;
+    margin-left: 22%;
+    margin-top: 20px;
+}
+
+#pago p{
+margin-top: 50px;
+font-size: 40px;
+}
+
+
+#hacer{
+width: 25%;
+height: 50px;
+background-color: black;
+color: white;
+font-size: 20px;
+margin-left: 300px;
+}
+#registrar{
+    width: 25%;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    margin-left: 140px;
+    margin-top: 30px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+  }
+  
+  .recent-table {
+    width: 60%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+  
+  .recent-table th {
+    background-color: #f9f9f9;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .recent-table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+  
+  .recent-table .arrow {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  

@@ -1,0 +1,82 @@
+#general{
+    height: 400px;
+    width: 60%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-left: 20%;
+    margin-top: 40px;
+}
+
+
+#nombre label{
+font-size: 25px;
+display: flex;
+margin-left: 40px;
+margin-top: 15px;
+}
+#nombre input{
+    width: 90%;
+    height: 40px;
+    margin-left: 40px;
+}
+
+input::placeholder {
+    padding-left: 0px;
+}
+
+
+
+#tarjeta label{
+    font-size: 25px;
+    display: flex;
+    margin-left: 40px;
+    margin-top: 15px;
+}
+#tarjeta input{
+    width: 90%;
+    height: 40px;
+    margin-left: 40px;
+}
+
+
+
+#ex label{
+    font-size: 25px;
+    display: flex;
+    margin-left: 40px;
+    margin-top: 15px;
+}
+#ex input{
+    width: 40%;
+    height: 40px;
+    margin-left: 40px;
+}
+
+
+
+#codigo label {
+    font-size: 25px;
+    display: flex;
+    margin-left: 500px;
+    margin-top: -70px;
+}
+#codigo input {
+    width: 40%;
+    height: 40px;
+    margin-left: 500px;
+}
+
+
+#bu{
+    margin-top: 30px;
+    width: 90%;
+    height: 40px;
+    margin-left: 40px; 
+    background-color: black;
+    color: white;
+    font-size: 20px;
+}
+
+h1{
+    text-align: center;
+}

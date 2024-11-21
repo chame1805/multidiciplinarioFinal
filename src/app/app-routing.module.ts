@@ -6,6 +6,8 @@ import { UsuarioHorarioComponent } from './Usuarios/usuario-horario-component/us
 import { ReservaComponent } from './Usuarios/reserva/reserva.component';
 import { HorariosComponent } from './Chofer/horarios/horarios.component';
 import { LiberarComponent } from './Chofer/liberar/liberar.component';
+import { MetodoComponent } from './Usuarios/metodo/metodo.component';
+import { PagoComponent } from './pago/pago.component';
 
 const routes: Routes = [
   {path: '', component:LoginComponent},
@@ -14,7 +16,9 @@ const routes: Routes = [
   {path: 'horario', component:UsuarioHorarioComponent},
   {path: 'reserva', component:ReservaComponent},
   {path:'rutas', component:HorariosComponent},
-  {path: 'liberar', component:LiberarComponent}
+  {path: 'liberar', component:LiberarComponent},
+  {path:'metodo', component:MetodoComponent},
+  {path: 'pago', component:PagoComponent}
 ];
 
 @NgModule({
