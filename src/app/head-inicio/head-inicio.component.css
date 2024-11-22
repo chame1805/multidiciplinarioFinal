@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    align-items: end;
+    border: 2px solid black;
+    background-color: black;
+    
+}
+#conteiner2{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin-left: 1100px;
+    gap: 30px;
+}
+
+img {
+    height: 50px;
+    width: auto;
+    margin: 5px;
+}
+
+
+button {
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin:10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

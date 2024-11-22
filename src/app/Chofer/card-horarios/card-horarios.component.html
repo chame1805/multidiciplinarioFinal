@@ -1,0 +1,13 @@
+<div class="route-container" *ngIf="horarios.length > 0">
+    <div *ngFor="let horario of horarios" class="route-card">
+      <div class="route-item">
+        <img src="urban.webp" alt="Van Image" class="van-image">
+        <div class="route-details">
+          <p>{{ horario.num_serie }} - {{ horario.ubicacion }}</p>
+          <p>Horario: {{ horario.horario || 'Horario no disponible en este momento' }}</p>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  |
