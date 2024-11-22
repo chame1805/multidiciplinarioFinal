@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+import { Observable } from 'rxjs';
+import { Horarios } from '../interface/horarios';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,9 +13,15 @@ export class RegistroRutaService {
   private terminalSeleccionada = new BehaviorSubject<string>('');
   terminalSeleccionada$ = this.terminalSeleccionada.asObservable();
 
-  private apiUrl = 'http://127.0.0.1:8000/api/colectivo/post';
+  private apiUrl = 'http://127.0.0.1:8000/api/colectivo'; // Ajusta si es necesario.
 
   constructor(private http: HttpClient) {}
+
+  // Método para enviar datos a la API
+  enviarDatosAPI(data: any) {
+    console.log('Enviando datos a la API:', data);
+    return this.http.post(this.apiUrl + '/post', data);
+  }
 
   // Método para agregar localmente
   newInfo(nuevo: any): void {
@@ -23,13 +30,6 @@ export class RegistroRutaService {
     this.info.next(nuevoValor);
     console.log('Información llegada:', nuevoValor);
   }
-
-  // Método para enviar datos a la API
-  enviarDatosAPI(data: any) {
-    console.log('Enviando datos a la API:', data);  // Asegúrate de que los datos son los correctos
-    return this.http.post(this.apiUrl, data);
-  }
-  
 
   updateInfo(index: number, nuevoValor: any): void {
     const datos = this.info.getValue();
@@ -45,6 +45,11 @@ export class RegistroRutaService {
 
   getEnvio(): any[] {
     return this.info.getValue();
+  }
+
+  // Método para obtener los horarios desde la API
+  obtenerHorarios(): Observable<Horarios[]> {
+    return this.http.get<Horarios[]>(this.apiUrl);
   }
 
   setTerminalSeleccionada(terminal: string): void {

@@ -1,11 +1,12 @@
-import { Component, OnInit,Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegistroRutaService } from '../../service/registro-ruta.service';
 import { Horarios } from '../../interface/horarios';
+
 @Component({
   selector: 'app-card-horarios',
   templateUrl: './card-horarios.component.html',
-  styleUrl: './card-horarios.component.css'
+  styleUrls: ['./card-horarios.component.css']
 })
 export class CardHorarioComponent implements OnInit {
   @Input() unidades: string[] = [];
@@ -16,6 +17,7 @@ export class CardHorarioComponent implements OnInit {
   constructor(private horarioService: RegistroRutaService, private router: Router) {}
 
   ngOnInit() {
+    // Manteniendo el comportamiento anterior
     this.horarioService.informacion$.subscribe((data) => {
       this.horariosOriginales = data;
       this.horarios = [...this.horariosOriginales];
@@ -26,6 +28,9 @@ export class CardHorarioComponent implements OnInit {
       this.terminalSeleccionada = terminal;
       this.filtrarHorarios();
     });
+
+    // Nuevo: Cargar datos desde la API
+    this.cargarHorariosDesdeAPI();
   }
 
   filtrarHorarios() {
@@ -38,5 +43,17 @@ export class CardHorarioComponent implements OnInit {
     }
   }
 
-  
+  cargarHorariosDesdeAPI() {
+    this.horarioService.obtenerHorarios().subscribe({
+      next: (data) => {
+        this.horariosOriginales = data;
+        this.horarios = [...this.horariosOriginales];
+        console.log('Horarios cargados desde la API:', data);
+        this.filtrarHorarios();
+      },
+      error: (err) => {
+        console.error('Error al cargar horarios desde la API:', err);
+      },
+    });
+  }
 }
