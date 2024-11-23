@@ -32,11 +32,16 @@ export class UsuarioHorarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Extrae datos del servicio
-    this.registroRutaService.informacion$.subscribe((data) => {
-      this.horarios = data;
-      this.filtrarHorarios();
-    });
+    // Obtener horarios desde la API
+    this.registroRutaService.obtenerHorarios().subscribe(
+      (data: Horarios[]) => {
+        this.horarios = data;  // Guardamos los horarios obtenidos
+        this.filtrarHorarios();  // Filtrar los horarios según los criterios actuales
+      },
+      (error) => {
+        console.error('Error al obtener los horarios:', error);
+      }
+    );
   }
 
   filtrarHorarios(): void {

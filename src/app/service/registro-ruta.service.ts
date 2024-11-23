@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Horarios } from '../interface/horarios';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -59,4 +59,14 @@ export class RegistroRutaService {
   getTerminalSeleccionada(): string {
     return this.terminalSeleccionada.getValue();
   }
+
+  // NUEVO: Método para editar un horario en la base de datos
+  editarHorario(id: number, data: any): Observable<any> {
+    return this.http.put(`http://127.0.0.1:8000/api/colectivo/update/${id}`, data);
+  }
+
+  eliminarHorario(id: number): Observable<any> {
+    return this.http.delete(`http://127.0.0.1:8000/api/colectivo/delete/${id}`);
+}
+
 }

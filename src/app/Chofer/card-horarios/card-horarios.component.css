@@ -5,9 +5,10 @@
     gap: 40px; /* Espacio entre las tarjetas */
     padding: 20px;
     margin-top: 100px;
-  }
-  
-  .route-card {
+}
+
+.route-card {
+    position: relative; /* Necesario para posicionar elementos hijos absolutamente */
     flex: 1 1 300px; /* Tamaño flexible de las tarjetas */
     max-width: 350px;
     border: 1px solid #ccc;
@@ -15,25 +16,25 @@
     padding: 15px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     font-size: 18px;
-  }
-  
-  .route-item {
+}
+
+.route-item {
     display: flex;
     align-items: center;
-  }
-  
-  .van-image {
+}
+
+.van-image {
     width: 120px;
     height: auto;
     border-radius: 10px;
-  }
-  
-  .route-details {
+}
+
+.route-details {
     margin-left: 20px;
     flex-grow: 1;
-  }
-  
-  .reserve-button {
+}
+
+.reserve-button {
     background-color: black;
     color: white;
     border: none;
@@ -42,5 +43,155 @@
     font-size: 18px;
     cursor: pointer;
     margin-top: 10px;
-  }
-  
+}
+
+/* Menú de opciones */
+.menu-container {
+    position: absolute;
+    top: 10px;
+    right: 10px; /* Posiciona el menú en la esquina superior derecha */
+}
+
+.menu-icon {
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.menu-options {
+    margin-top: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+}
+
+.menu-option {
+    display: block;
+    padding: 8px 12px;
+    font-size: 16px;
+    color: #333;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.menu-option:hover {
+    background-color: #f0f0f0;
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegura que la modal esté sobre otros elementos */
+}
+
+.modal-content {
+  background: #f9f9f9; /* Fondo claro consistente con las tarjetas */
+  padding: 30px;
+  border-radius: 12px;
+  width: 450px;
+  max-width: 90%; /* Se adapta mejor en pantallas más pequeñas */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  position: relative;
+  text-align: center;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary {
+  background-color: black;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #333;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de cerrar */
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.modal-close:hover {
+  color: black;
+}

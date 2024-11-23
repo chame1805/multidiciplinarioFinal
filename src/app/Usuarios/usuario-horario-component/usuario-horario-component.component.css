@@ -57,23 +57,27 @@ select:focus {
   outline: none;
 }
 
+/* Contenedor de la lista de horarios */
 .route-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px; /* Espacio entre las tarjetas */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  gap: 20px; /* Espacio entre tarjetas */
   padding: 20px;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 .route-card {
-  flex: 1 1 300px; /* Tamaño flexible de las tarjetas */
-  max-width: 350px;
-  border: 1px solid #ccc;
+  border: 2px solid #000000;
+  background: #000;
   border-radius: 12px;
   padding: 15px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   font-size: 18px;
+  transition: box-shadow 0.3s ease;
+}
+
+.route-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .route-item {
@@ -103,7 +107,6 @@ select:focus {
   margin-top: 10px;
 }
 
-
 /* Mensaje cuando no hay horarios */
 .no-schedule-message {
   text-align: center;
@@ -111,9 +114,13 @@ select:focus {
   color: #666;
   margin-top: 20px;
 }
-.horario-card{
-  width: 500px;
+
+.horario-card {
+  width: 100%; /* Tarjetas ocupan todo el espacio disponible */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 8%;
 }
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -141,7 +148,9 @@ select:focus {
 
 button {
   margin: 5px;
-}/* Fondo del modal */
+}
+
+/* Fondo del modal */
 .modal-overlay {
   position: fixed;
   top: 0;
