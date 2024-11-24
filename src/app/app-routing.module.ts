@@ -8,10 +8,12 @@ import { HorariosComponent } from './Chofer/horarios/horarios.component';
 import { LiberarComponent } from './Chofer/liberar/liberar.component';
 import { MetodoComponent } from './Usuarios/metodo/metodo.component';
 import { PagoComponent } from './pago/pago.component';
+import { PrincipalComponent } from './principal/principal.component';
 
 const routes: Routes = [
   {path: '', component:LoginComponent},
-  {path:'login', component:LoginComponent},
+  {path: 'inicio', component:LoginComponent},
+  {path:'login', component:PrincipalComponent},
   {path:'registro', component:RegistroComponent},
   {path: 'horario', component:UsuarioHorarioComponent},
   {path: 'reserva', component:ReservaComponent},

@@ -6,6 +6,7 @@ import { AutentificacionModule } from './autentificacion/autentificacion.module'
 import { UsuarioModule } from './Usuarios/usuario/usuario.module';
 import { ChoferesModule } from './Chofer/choferes/choferes.module';
 import { HttpClientModule } from '@angular/common/http';
+import { PrincipalComponent } from './principal/principal.component';
 
 
 
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
+    PrincipalComponent,
   
   ],
   imports: [
