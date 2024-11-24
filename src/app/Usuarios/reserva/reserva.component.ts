@@ -50,73 +50,57 @@ export class ReservaComponent implements OnInit {
     }
   }
 
-  // Confirma la reserva y la envía al backend
   confirmarReserva(): void {
-    // Verificación de que todos los campos estén llenos
-    let camposFaltantes = [];
-    if (!this.origenSeleccionado) {
-      camposFaltantes.push('origen');
-    }
-    if (!this.destinoSeleccionado) {
-      camposFaltantes.push('destino');
-    }
-    if (!this.horarioSeleccionado) {
-      camposFaltantes.push('horario');
-    }
-
-    if (camposFaltantes.length > 0) {
+    // Verificación de que la cantidad es válida
+    if (this.cantidad <= 0 || this.cantidad > this.resultadoFin) {
       this.mostrarModal = true;
-      this.mensajeModal = `Por favor completa los siguientes campos: ${camposFaltantes.join(', ')}`;
+      this.mensajeModal = 'Cantidad no válida. Ingresa un número válido de asientos.';
       return;
     }
-
-    // Datos del pasajero
-    const pasajero = {
-      name: 'Nombre del usuario', // Puedes ajustar esto para usar un valor dinámico
-      origen: this.origenSeleccionado,
-      destino: this.destinoSeleccionado,
-      colectivo_id: this.horarioSeleccionado.num_serie, // Relacionado con el colectivo
-      chofer_id: this.horarioSeleccionado.chofer_id, // Ajusta según tu API
-    };
-
-    // Mostrar los datos del pasajero antes de enviarlos
-    console.log('Datos del pasajero que se enviarán:', pasajero);
-
-    // Registrar pasajero
-    this.reservaService.registrarPasajero(pasajero).subscribe({
-      next: (responsePasajero) => {
-        console.log('Pasajero registrado:', responsePasajero);
-
-        // Datos de la reserva
-        const reserva = {
-          pasajero_id: responsePasajero.id,
-          cantidad: this.cantidad,
-          horario_id: this.horarioSeleccionado.id, // Relacionado con el horario
+  
+    // Obtener la última reserva desde el servicio
+    this.reservaService.obtenerUltimaReserva().subscribe({
+      next: (ultimaReserva) => {
+        // Verificar que la respuesta contenga los datos necesarios
+        if (!ultimaReserva) {
+          console.error('No se encontró una reserva previa');
+          alert('Error al obtener la última reserva.');
+          return;
+        }
+  
+        // Crear el objeto con los datos de la última reserva, pero actualizando solo la cantidad
+        const reservaActualizada = {
+          fecha_reserva: ultimaReserva.fecha_reserva,  // Fecha de la última reserva
+          forma_pago: ultimaReserva.forma_pago,        // Forma de pago de la última reserva
+          monto: ultimaReserva.monto,                  // Monto de la última reserva
+          pasajero_id: ultimaReserva.pasajero_id,      // ID del pasajero de la última reserva
+          cantidad: this.cantidad,                     // Nueva cantidad seleccionada
         };
-
-        // Mostrar los datos de la reserva antes de enviarlos
-        console.log('Datos de la reserva que se enviarán:', reserva);
-
-        // Registrar la reserva
-        this.reservaService.registrarReserva(reserva).subscribe({
-          next: (responseReserva) => {
-            console.log('Reserva registrada:', responseReserva);
+  
+        // Console log para verificar los datos que se están enviando al backend
+        console.log('Datos enviados al backend para actualizar la reserva:', reservaActualizada);
+  
+        // Llamar al servicio para actualizar la reserva con la nueva cantidad
+        this.reservaService.actualizarReserva(ultimaReserva.id, reservaActualizada).subscribe({
+          next: (response) => {
+            console.log('Reserva actualizada con éxito:', response);
             this.cerrarModal();
-            alert('Reserva realizada con éxito.');
+            alert('Reserva actualizada con éxito.');
           },
-          error: (errorReserva) => {
-            console.error('Error al registrar la reserva:', errorReserva);
-            alert('Error al realizar la reserva.');
+          error: (error) => {
+            console.error('Error al actualizar la reserva:', error);
+            alert('Error al actualizar la reserva.');
           },
         });
       },
-      error: (errorPasajero) => {
-        console.error('Error al registrar el pasajero:', errorPasajero);
-        alert('Error al registrar el pasajero.');
+      error: (error) => {
+        console.error('Error al obtener la última reserva:', error);
+        alert('Error al obtener la última reserva.');
       },
     });
   }
-
+  
+  
   // Cierra el modal
   cerrarModal(): void {
     this.mostrarModal = false;

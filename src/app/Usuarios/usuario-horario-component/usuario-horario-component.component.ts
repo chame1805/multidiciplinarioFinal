@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Horarios } from '../../interface/horarios';
 import { ReservaService } from '../../service/reserva.service';
 import { Pasajero } from '../../interface/pasajero';
+import { Reserva } from '../../interface/reserva';
 
 @Component({
   selector: 'app-usuario-horario-component',
@@ -121,7 +122,6 @@ export class UsuarioHorarioComponent implements OnInit {
   
   
   crearReserva(horarioId: number): void {
-    // Obtener el ID del pasajero más reciente (asumiendo que el backend permite esto)
     this.reservaService.obtenerUltimoPasajero().subscribe({
       next: (responsePasajero) => {
         const pasajeroId = responsePasajero.id; // Obtenemos el ID del pasajero
@@ -131,9 +131,14 @@ export class UsuarioHorarioComponent implements OnInit {
           return;
         }
   
-        const reserva = {
-          horario_id: horarioId,
-          pasajero_id: pasajeroId, // Asociamos el ID del pasajero a la reserva
+        // Datos completos de la reserva
+        const reserva : Reserva = {
+          id: null, // Puede omitirse si es opcional
+          fecha_reserva: new Date().toISOString().split('T')[0], // Fecha actual en formato 'YYYY-MM-DD'
+          forma_pago: '', // Forma de pago predeterminada
+          monto: 20, // Monto fijo
+          pasajero_id: pasajeroId, // Asociamos el ID del pasajero
+          cantidad: 0, // Cantidad predeterminada
         };
   
         console.log('Datos de la reserva a enviar:', reserva);
@@ -159,4 +164,5 @@ export class UsuarioHorarioComponent implements OnInit {
     });
   }
   
-}
+  }
+  
