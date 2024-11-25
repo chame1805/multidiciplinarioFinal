@@ -73,7 +73,7 @@ actualizarReserva1(id: string, data: any): Observable<any> {
   return this.http.patch(`${this.colectivo}/asientos/${id}`, JSON.stringify(data), { headers });
 }
 obtenerColectivoPorPasajero(pasajeroId: string): Observable<any> {
-  const url = `${this.pasajeroApiUrl}/${pasajeroId}/colectivo`;
+  const url = `${this.pasajeroApiUrl}/colectivo/${pasajeroId}`;
   return this.http.get<any>(url);
 }
 }

@@ -97,7 +97,7 @@ export class UsuarioHorarioComponent implements OnInit {
       origen: this.origenSeleccionado,
       destino: this.destinoSeleccionado,
       colectivo_id: this.horarioSeleccionado.id,
-      chofer_id: 5, // Ajusta según corresponda
+      chofer_id: 6,
     };
 
     console.log('Datos del pasajero a enviar:', pasajero);

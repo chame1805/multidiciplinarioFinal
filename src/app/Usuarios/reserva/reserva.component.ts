@@ -50,14 +50,12 @@ export class ReservaComponent implements OnInit {
     }
   }
 
-  // Decrementa la cantidad de asientos seleccionados
   decrementar(): void {
     if (this.cantidad > 0) {
       this.cantidad--;
     }
   }
 
-  // Verifica la cantidad antes de iniciar la reserva
   reservar(): void {
     if (this.cantidad > 0 && this.cantidad <= this.resultadoFin) {
       this.mostrarConfirmacion = true;
@@ -91,7 +89,6 @@ export class ReservaComponent implements OnInit {
               return;
             }
   
-            // Aquí estamos obteniendo los asientos disponibles del colectivo correctamente
             this.resultadoFin = colectivo.asientos;
             console.log("Asientos disponibles en el colectivo:", this.resultadoFin);
   
@@ -101,7 +98,6 @@ export class ReservaComponent implements OnInit {
               return;
             }
   
-            // Creación de la reserva actualizada
             const reservaActualizada = {
               fecha_reserva: ultimaReserva.fecha_reserva,
               forma_pago: ultimaReserva.forma_pago,
@@ -118,7 +114,6 @@ export class ReservaComponent implements OnInit {
               next: (response) => {
                 console.log('Reserva actualizada con éxito:', response);
   
-                // Actualizamos los asientos del colectivo
                 const dataParaActualizar = {
                   id: 0, // Asegúrate de pasar el id correcto del colectivo
                   asientos: colectivo.asientos - this.cantidad, // Restamos los asientos que se van a reservar
@@ -130,7 +125,6 @@ export class ReservaComponent implements OnInit {
   
                 console.log('Datos para actualizar asientos:', dataParaActualizar);
   
-                // Llamamos al método de actualización de asientos del colectivo
                 this.reservaService.actualizarReserva1(colectivo.id, dataParaActualizar).subscribe({
                   next: () => {
                     this.resultadoFin = dataParaActualizar.asientos; // Actualizamos los asientos restantes en el frontend
@@ -167,7 +161,7 @@ export class ReservaComponent implements OnInit {
     this.mostrarModal = false;
     this.mostrarConfirmacion = false;
     this.mensajeModal = '';
-    this.cantidad = 0; // Reinicia la cantidad seleccionada
+    this.cantidad = 0; 
   }
 
   cancelarReserva(): void {
