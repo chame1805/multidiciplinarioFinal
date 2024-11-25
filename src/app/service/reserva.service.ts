@@ -7,7 +7,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class ReservaService {
   private apiUrl = 'http://127.0.0.1:8000/api/reservas';
-  private pasajeroApiUrl = 'http://127.0.0.1:8000/api/pasajeros'; // URL base para los pasajeros
+  private pasajeroApiUrl = 'http://127.0.0.1:8000/api/pasajeros';
+  private  colectivo = 'http://127.0.0.1:8000/api/colectivo'
 
   // BehaviorSubject para compartir datos entre componentes
   private reservaData = new BehaviorSubject<any>(null);
@@ -69,8 +70,10 @@ actualizarReserva(id: string, reserva: any): Observable<any> {
 }
 actualizarReserva1(id: string, data: any): Observable<any> {
   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  return this.http.patch(`${this.apiUrl}/asientos/${id}`, JSON.stringify(data), { headers });
+  return this.http.patch(`${this.colectivo}/asientos/${id}`, JSON.stringify(data), { headers });
 }
-
-
+obtenerColectivoPorPasajero(pasajeroId: string): Observable<any> {
+  const url = `${this.pasajeroApiUrl}/${pasajeroId}/colectivo`;
+  return this.http.get<any>(url);
+}
 }

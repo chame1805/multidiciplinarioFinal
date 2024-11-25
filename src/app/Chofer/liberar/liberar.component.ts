@@ -31,12 +31,20 @@ export class LiberarComponent implements OnInit {
   }
 
   liberar(): void {
-    if (this.asientosDisponibles > 0) {
-      this.asientosDisponibles -= 1;
-
-      // Llamada a la API para actualizar los asientos
+    if (this.asientosDisponibles < 15) {
+      this.asientosDisponibles += 1;
+  
+      const datosActualizados = {
+        id: 0,
+        asientos: this.asientosDisponibles,
+        ubicacion: "string",
+        num_serie: "string",
+        fecha: "string",
+        horario: "string"
+   };
+  
       this.reservaService
-        .actualizarReserva1(this.horarioSeleccionado.id, { asientos: this.asientosDisponibles })
+        .actualizarReserva1(this.horarioSeleccionado.id, datosActualizados)
         .subscribe({
           next: (response) => {
             console.log('Asientos actualizados:', response);
@@ -46,9 +54,10 @@ export class LiberarComponent implements OnInit {
           },
         });
     } else {
-      alert('No puedes liberar más asientos. Ya están todos ocupados.');
+      alert('No puedes liberar más asientos. Ya se alcanzo el maximo.');
     }
   }
+  
 
   cancelar(): void {
     this.router.navigate(['/rutas']);

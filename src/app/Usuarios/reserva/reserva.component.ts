@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservaService } from '../../service/reserva.service';
+import { ActivatedRoute } from '@angular/router';
+import { RegistroRutaService } from '../../service/registro-ruta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reserva',
@@ -17,15 +20,30 @@ export class ReservaComponent implements OnInit {
   // Datos para la reserva
   origenSeleccionado: string = '';
   destinoSeleccionado: string = '';
-  horarioSeleccionado: any = null; // Este debe ser un objeto con la información del horario
+  horarioSeleccionado: any = null; 
 
-  constructor(private reservaService: ReservaService) {}
+  constructor( 
+    private  route: ActivatedRoute,
+    private reservaService: ReservaService ) {}
 
-  ngOnInit(): void {
-    // Lógica inicial si es necesario
-  }
-
-  // Incrementa la cantidad de asientos seleccionados
+    ngOnInit(): void {
+      this.route.queryParams.subscribe(params => {
+        const horarioSeleccionadoString = params['horarioSeleccionado'];
+        if (horarioSeleccionadoString) {
+          this.horarioSeleccionado = JSON.parse(horarioSeleccionadoString);
+          console.log('Horario seleccionado desde queryParams:', this.horarioSeleccionado);
+          if (this.horarioSeleccionado.asientos) {
+            this.resultadoFin = this.horarioSeleccionado.asientos;
+            this.cantidad = this.resultadoFin;
+            console.log('Asientos disponibles:', this.resultadoFin);
+          }
+        } else {
+          console.error('No se recibió el horario seleccionado.');
+        }
+      });
+    }
+    
+    
   incrementar(): void {
     if (this.cantidad < this.resultadoFin) {
       this.cantidad++;
@@ -51,45 +69,89 @@ export class ReservaComponent implements OnInit {
   }
 
   confirmarReserva(): void {
-    // Verificación de que la cantidad es válida
     if (this.cantidad <= 0 || this.cantidad > this.resultadoFin) {
       this.mostrarModal = true;
       this.mensajeModal = 'Cantidad no válida. Ingresa un número válido de asientos.';
       return;
     }
   
-    // Obtener la última reserva desde el servicio
     this.reservaService.obtenerUltimaReserva().subscribe({
       next: (ultimaReserva) => {
-        // Verificar que la respuesta contenga los datos necesarios
         if (!ultimaReserva) {
           console.error('No se encontró una reserva previa');
           alert('Error al obtener la última reserva.');
           return;
         }
   
-        // Crear el objeto con los datos de la última reserva, pero actualizando solo la cantidad
-        const reservaActualizada = {
-          fecha_reserva: ultimaReserva.fecha_reserva,  // Fecha de la última reserva
-          forma_pago: ultimaReserva.forma_pago,        // Forma de pago de la última reserva
-          monto: ultimaReserva.monto,                  // Monto de la última reserva
-          pasajero_id: ultimaReserva.pasajero_id,      // ID del pasajero de la última reserva
-          cantidad: this.cantidad,                     // Nueva cantidad seleccionada
-        };
+        this.reservaService.obtenerColectivoPorPasajero(ultimaReserva.pasajero_id).subscribe({
+          next: (colectivo) => {
+            if (!colectivo) {
+              console.error('No se encontró un colectivo vinculado a este pasajero.');
+              alert('Error al obtener el colectivo vinculado.');
+              return;
+            }
   
-        // Console log para verificar los datos que se están enviando al backend
-        console.log('Datos enviados al backend para actualizar la reserva:', reservaActualizada);
+            // Aquí estamos obteniendo los asientos disponibles del colectivo correctamente
+            this.resultadoFin = colectivo.asientos;
+            console.log("Asientos disponibles en el colectivo:", this.resultadoFin);
   
-        // Llamar al servicio para actualizar la reserva con la nueva cantidad
-        this.reservaService.actualizarReserva(ultimaReserva.id, reservaActualizada).subscribe({
-          next: (response) => {
-            console.log('Reserva actualizada con éxito:', response);
-            this.cerrarModal();
-            alert('Reserva actualizada con éxito.');
+            if (this.cantidad > this.resultadoFin) {
+              this.mostrarModal = true;
+              this.mensajeModal = 'No hay suficientes asientos disponibles para esta reserva.';
+              return;
+            }
+  
+            // Creación de la reserva actualizada
+            const reservaActualizada = {
+              fecha_reserva: ultimaReserva.fecha_reserva,
+              forma_pago: ultimaReserva.forma_pago,
+              monto: ultimaReserva.monto,
+              pasajero_id: ultimaReserva.pasajero_id,
+              cantidad: this.cantidad,
+              colectivo_id: colectivo.id,
+            };
+  
+            console.log('Datos enviados al backend para actualizar la reserva:', reservaActualizada);
+  
+            // Llamamos al servicio para actualizar la reserva
+            this.reservaService.actualizarReserva(ultimaReserva.id, reservaActualizada).subscribe({
+              next: (response) => {
+                console.log('Reserva actualizada con éxito:', response);
+  
+                // Actualizamos los asientos del colectivo
+                const dataParaActualizar = {
+                  id: 0, // Asegúrate de pasar el id correcto del colectivo
+                  asientos: colectivo.asientos - this.cantidad, // Restamos los asientos que se van a reservar
+                  ubicacion: "string",
+                  num_serie: "string",
+                  fecha: "string",
+                  horario: "string"
+                };
+  
+                console.log('Datos para actualizar asientos:', dataParaActualizar);
+  
+                // Llamamos al método de actualización de asientos del colectivo
+                this.reservaService.actualizarReserva1(colectivo.id, dataParaActualizar).subscribe({
+                  next: () => {
+                    this.resultadoFin = dataParaActualizar.asientos; // Actualizamos los asientos restantes en el frontend
+                    this.cerrarModal();
+                    alert('Reserva confirmada y asientos actualizados con éxito.');
+                  },
+                  error: (error) => {
+                    console.error('Error al actualizar los asientos disponibles:', error);
+                    alert('Error al actualizar los asientos disponibles.');
+                  },
+                });
+              },
+              error: (error) => {
+                console.error('Error al actualizar la reserva:', error);
+                alert('Error al actualizar la reserva.');
+              },
+            });
           },
           error: (error) => {
-            console.error('Error al actualizar la reserva:', error);
-            alert('Error al actualizar la reserva.');
+            console.error('Error al obtener el colectivo vinculado:', error);
+            alert('Error al obtener el colectivo vinculado.');
           },
         });
       },
@@ -100,8 +162,7 @@ export class ReservaComponent implements OnInit {
     });
   }
   
-  
-  // Cierra el modal
+
   cerrarModal(): void {
     this.mostrarModal = false;
     this.mostrarConfirmacion = false;
@@ -109,8 +170,7 @@ export class ReservaComponent implements OnInit {
     this.cantidad = 0; // Reinicia la cantidad seleccionada
   }
 
-  // Cancela la reserva
   cancelarReserva(): void {
-    this.cerrarModal(); // Usa la función centralizada
+    this.cerrarModal();
   }
 }

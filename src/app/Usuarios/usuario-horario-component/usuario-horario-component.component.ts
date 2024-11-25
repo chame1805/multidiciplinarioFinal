@@ -39,6 +39,10 @@ export class UsuarioHorarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.obtenerHorarios();
+  }
+
+  obtenerHorarios(): void {
     this.registroRutaService.obtenerHorarios().subscribe(
       (data: Horarios[]) => {
         this.horarios = data;
@@ -46,6 +50,7 @@ export class UsuarioHorarioComponent implements OnInit {
       },
       (error) => {
         console.error('Error al obtener los horarios:', error);
+        alert('Error al cargar los horarios. Intenta nuevamente más tarde.');
       }
     );
   }
@@ -67,89 +72,83 @@ export class UsuarioHorarioComponent implements OnInit {
     this.mostrarModal = false;
     this.origenSeleccionado = '';
     this.destinoSeleccionado = '';
-    this.nombreIngresado = ''; 
+    this.nombreIngresado = '';
     this.horarioSeleccionado = null;
-  }
-
-  obtenerIdHorario(): number | null {
-    if (this.horarioSeleccionado) {
-      return this.horarioSeleccionado.id;
-    } else {
-      return null;
-    }
   }
 
   confirmarReserva(): void {
     if (!this.origenSeleccionado || !this.destinoSeleccionado || !this.nombreIngresado) {
-      alert('Por favor selecciona tanto el origen como el destino y proporciona un nombre.');
+      alert('Por favor selecciona origen, destino y proporciona un nombre.');
       return;
     }
-  
-    const idHorario = this.obtenerIdHorario();
-    if (!idHorario) {
+
+    if (!this.horarioSeleccionado) {
       alert('No se ha seleccionado un horario válido.');
       return;
     }
-  
-    // Asegúrate de que el nombre sea válido
+
     if (this.nombreIngresado.trim() === '') {
       alert('Por favor ingresa un nombre válido.');
       return;
     }
-  
+
     const pasajero: Pasajero = {
       name: this.nombreIngresado,
       origen: this.origenSeleccionado,
       destino: this.destinoSeleccionado,
-      colectivo_id: idHorario,
+      colectivo_id: this.horarioSeleccionado.id,
       chofer_id: 5, // Ajusta según corresponda
     };
-  
+
     console.log('Datos del pasajero a enviar:', pasajero);
-  
-    // Registrar al pasajero y luego crear la reserva
+
+    this.registrarPasajero(pasajero);
+  }
+
+  registrarPasajero(pasajero: Pasajero): void {
     this.reservaService.registrarPasajero(pasajero).subscribe({
       next: (responsePasajero) => {
         console.log('Pasajero registrado:', responsePasajero);
-        this.crearReserva(idHorario); // Llama a crearReserva pasando solo el horarioId
+        this.crearReserva();
       },
-      error: (errorPasajero) => {
-        console.error('Error al registrar el pasajero:', errorPasajero);
+      error: (error) => {
+        console.error('Error al registrar el pasajero:', error);
         alert('Error al registrar el pasajero.');
       },
     });
   }
-  
-  
-  crearReserva(horarioId: number): void {
+
+  crearReserva(): void {
+    if (!this.horarioSeleccionado) {
+      alert('No se pudo realizar la reserva: horario no válido.');
+      return;
+    }
+
     this.reservaService.obtenerUltimoPasajero().subscribe({
       next: (responsePasajero) => {
-        const pasajeroId = responsePasajero.id; // Obtenemos el ID del pasajero
-  
+        const pasajeroId = responsePasajero.id;
+
         if (!pasajeroId) {
           alert('Error: No se pudo obtener el ID del pasajero.');
           return;
         }
-  
-        // Datos completos de la reserva
-        const reserva : Reserva = {
-          id: null, // Puede omitirse si es opcional
-          fecha_reserva: new Date().toISOString().split('T')[0], // Fecha actual en formato 'YYYY-MM-DD'
+
+        const reserva: Reserva = {
+          id: null,
+          fecha_reserva: new Date().toISOString().split('T')[0],
           forma_pago: '', // Forma de pago predeterminada
           monto: 20, // Monto fijo
-          pasajero_id: pasajeroId, // Asociamos el ID del pasajero
-          cantidad: 0, // Cantidad predeterminada
+          pasajero_id: pasajeroId,
+          cantidad: 1, // Cantidad reservada
         };
-  
+
         console.log('Datos de la reserva a enviar:', reserva);
-  
-        // Registrar la reserva
+
         this.reservaService.registrarReserva(reserva).subscribe({
           next: (responseReserva) => {
             console.log('Reserva registrada:', responseReserva);
-            this.cerrarModal();
             alert('Reserva realizada con éxito.');
-            this.router.navigate(['/reserva']); // Redirige a la página de reserva
+            this.redirigirReserva();
           },
           error: (errorReserva) => {
             console.error('Error al registrar la reserva:', errorReserva);
@@ -163,6 +162,21 @@ export class UsuarioHorarioComponent implements OnInit {
       },
     });
   }
+
+  redirigirReserva(): void {
+    console.log('Horario seleccionado antes de la navegación:', this.horarioSeleccionado);  // Verifica que el valor esté aquí
+    if (!this.horarioSeleccionado) {
+      alert('No se seleccionó un horario.');
+      return;
+    }
+    
+    // Convertir el objeto en una cadena JSON para enviarlo a través de queryParams
+    const horarioSeleccionadoString = JSON.stringify(this.horarioSeleccionado);
   
+    this.router.navigate(['/reserva'], {
+      queryParams: { horarioSeleccionado: horarioSeleccionadoString },
+    });
   }
   
+  
+}
