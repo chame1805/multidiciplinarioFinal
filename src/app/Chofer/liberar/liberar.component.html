@@ -4,13 +4,29 @@
   <div id="container">
     <div id="div2">
       <div id="mini_div">
-        <p>Asientos disponibles</p>
-        <p id="asientos-disponibles">{{ asientosDisponibles }}</p>
-        <button id="btn-liberar" (click)="liberar()">Liberar</button>
+        <div>
+  <p>Asientos Disponibles: {{ asientosDisponibles }}</p>
+  
+  <button 
+  id="btn-liberar"
+    (click)="liberar()" 
+    [disabled]="asientosDisponibles <= 0"
+    class="btn btn-primary">
+    Liberar 
+  </button>
+
+  <button  id="btn-cancelar"
+    (click)="cancelar()" 
+    class="btn btn-secondary">
+    Cancelar
+  </button>
+</div>
+
       </div>
     </div>
     <div id="div1">
       <img id="img1" src="./urban.webp" alt="Imagen del colectivo">
     </div>
   </div>
-</div>  
+  
+</div>

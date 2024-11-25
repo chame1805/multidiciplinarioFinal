@@ -118,4 +118,19 @@ export class CardHorarioComponent implements OnInit {
       },
     });
   }
-}
+ 
+  liberarAsientos(id: number): void {
+    const horario = this.horarios.find(h => h.id === id);
+    if (horario) {
+      console.log('Horario seleccionado:', horario);
+      setTimeout(() => {
+        this.router.navigate(['/liberar'], { state: { horarioSeleccionado: horario } });
+      }, 0); // Asegura que la navegación ocurra después de que el ciclo de eventos de Angular se haya completado
+    } else {
+      console.error('No se encontró el horario con el id:', id);
+    }
+  }
+  
+  
+  
+} 

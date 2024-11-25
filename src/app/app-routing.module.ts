@@ -9,6 +9,7 @@ import { LiberarComponent } from './Chofer/liberar/liberar.component';
 import { MetodoComponent } from './Usuarios/metodo/metodo.component';
 import { PagoComponent } from './pago/pago.component';
 import { PrincipalComponent } from './principal/principal.component';
+import { CardHorarioComponent } from './Chofer/card-horarios/card-horarios.component';
 
 const routes: Routes = [
   {path: '', component:LoginComponent},

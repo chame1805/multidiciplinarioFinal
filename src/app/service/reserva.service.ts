@@ -67,5 +67,10 @@ actualizarReserva(id: string, reserva: any): Observable<any> {
   console.log(`Actualizando reserva con ID: ${id}`, reserva);
   return this.http.put(`${this.apiUrl}/update/${id}`, JSON.stringify(reserva), { headers });
 }
+actualizarReserva1(id: string, data: any): Observable<any> {
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.patch(`${this.apiUrl}/asientos/${id}`, JSON.stringify(data), { headers });
+}
+
 
 }

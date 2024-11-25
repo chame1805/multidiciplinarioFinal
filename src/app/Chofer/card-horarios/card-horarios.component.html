@@ -5,6 +5,7 @@
       <div class="menu-options" *ngIf="activeMenu === horario.id">
         <button class="menu-option" (click)="editHorario(horario)">Editar</button>
         <button class="menu-option" (click)="deleteHorario(horario.id)">Eliminar</button>
+        <button class="menu-option" (click)="liberarAsientos(horario.id)">Liberar Asientos</button>
       </div>
     </div>
     <div class="route-item">
