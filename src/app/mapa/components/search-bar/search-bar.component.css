@@ -1,0 +1,19 @@
+.search-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: white;
+    padding: 10px; /* Mejora la usabilidad */
+    width: 300px; /* Define un tamaño fijo para más consistencia */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Agrega una sombra para visibilidad */
+    border-radius: 8px; /* Bordes redondeados para una mejor apariencia */
+    z-index: 999; /* Asegúrate de que esté encima del mapa */
+}
+
+.search-container input {
+    width: 100%; /* El input debe ocupar todo el ancho del contenedor */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
