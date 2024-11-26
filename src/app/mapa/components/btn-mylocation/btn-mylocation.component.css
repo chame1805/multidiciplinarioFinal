@@ -1,5 +1,28 @@
-button{
+button {
     position: fixed;
     top: 20px;
     right: 20px;
-}
+    background-color: #333; /* Fondo negro */
+    color: white; /* Texto blanco */
+    border: none; /* Elimina bordes predeterminados */
+    border-radius: 10%; /* Bordes redondeados */
+    padding: 15px 15px; /* Tamaño adecuado */
+    font-size: 18px; /* Tamaño del ícono/texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para resaltar el botón */
+    cursor: pointer; /* Asegura que el cursor sea una mano al pasar por encima */
+    z-index: 9999; /* Asegura que el botón esté siempre encima */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+  }
+  
+  /* Efecto al pasar el ratón */
+  button:hover {
+    background-color: #444; /* Color ligeramente más claro en el hover */
+    transform: scale(1.1); /* Aumentar ligeramente el tamaño al pasar el ratón */
+  }
+  
+  /* Estilo para el ícono dentro del botón */
+  button i {
+    font-size: 20px; /* Asegura que el ícono sea lo suficientemente grande */
+    color: white; /* El ícono debe ser blanco */
+  }
+  

@@ -56,12 +56,15 @@ export class UsuarioHorarioComponent implements OnInit {
   }
 
   filtrarHorarios(): void {
-    this.horariosFiltrados = this.horarios.filter(
-      (horario) =>
-        (!this.terminalSeleccionada || horario.ubicacion === this.terminalSeleccionada) &&
-        (!this.fechaSeleccionada || horario.fecha === this.fechaSeleccionada)
-    );
+    // Filtrar por fecha y terminal seleccionada
+    this.horariosFiltrados = this.horarios.filter((horario) => {
+      const fechaValida = !this.fechaSeleccionada || horario.fecha === this.fechaSeleccionada;
+      const terminalValida = !this.terminalSeleccionada || horario.ubicacion === this.terminalSeleccionada;
+  
+      return fechaValida && terminalValida;
+    });
   }
+  
 
   abrirModal(horario: Horarios): void {
     this.horarioSeleccionado = horario;
