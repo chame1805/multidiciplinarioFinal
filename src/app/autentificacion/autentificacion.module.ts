@@ -17,6 +17,7 @@ import { HeaderCComponent } from '../Chofer/header-c/header-c.component';
     HeaderComponent,
     HeadInicioComponent,
     HeaderCComponent
+    
   ],
   imports: [
     CommonModule,
@@ -26,7 +27,8 @@ import { HeaderCComponent } from '../Chofer/header-c/header-c.component';
   exports:[
     LoginComponent,
     RegistroComponent,
-    HeaderComponent
+    HeaderComponent,
+    HeaderCComponent
   ]
 })
 export class AutentificacionModule { }
