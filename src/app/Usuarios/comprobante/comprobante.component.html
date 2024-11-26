@@ -1,9 +1,11 @@
 <app-header-c></app-header-c>
 <div class="comprobante-container">
-    <h2>Comprobante de Reserva</h2>
-    <p><strong>Nombre:</strong> {{ nombre }}</p>
-    <p><strong>Origen:</strong> {{ origen }}</p>
-    <p><strong>Destino:</strong> {{ destino }}</p>
-    <p><strong>Asientos Apartados:</strong> {{ cantidadAsientos }}</p>
-  </div>
-  
+  <h3>Pasajeros:</h3>
+  <ul>
+    <li *ngFor="let pasajero of pasajeros">
+      <strong>Nombre:</strong> {{ pasajero.name }},
+      <strong>Origen:</strong> {{ pasajero.origen }},
+      <strong>Destino:</strong> {{ pasajero.destino }}
+    </li>
+  </ul>
+</div>

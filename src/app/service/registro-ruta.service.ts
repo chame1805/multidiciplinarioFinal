@@ -69,5 +69,11 @@ export class RegistroRutaService {
     return this.http.delete(`http://127.0.0.1:8000/api/colectivo/delete/${id}`);
   }
 
+  // En el archivo RegistroRutaService
+obtenerPasajerosPorColectivo(id: number): Observable<any[]> {
+  return this.http.get<any[]>(`http://127.0.0.1:8000/api/colectivo/pasajeros/${id}`);
+}
+
+
   
 }

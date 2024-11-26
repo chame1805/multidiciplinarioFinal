@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: '', component:PrincipalComponent},
   {path: 'inicio', component:LoginComponent},
   {path:'login', component:PrincipalComponent},
-  {path :'comprobante', component:ComprobanteComponent},
+  { path: 'comprobante/:id', component: ComprobanteComponent },
   {path:'registro', component:RegistroComponent},
   {path: 'horario', component:UsuarioHorarioComponent},
   {path: 'reserva', component:ReservaComponent},
