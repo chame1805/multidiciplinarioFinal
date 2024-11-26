@@ -1,0 +1,12 @@
+<app-header></app-header> <!-- Siempre visible -->
+<div class="main-container">
+  <app-loading *ngIf="!isUserLocationReady; else mapReady"></app-loading>
+
+  <ng-template #mapReady>
+    <app-map-view></app-map-view>
+    <app-btn-mylocation></app-btn-mylocation>
+    <app-search-bar></app-search-bar>
+    <button>Regresar</button>
+  </ng-template>
+</div>
+<app-angularlogo></app-angularlogo>

@@ -1,0 +1,63 @@
+.search-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: white;
+    padding: 10px; /* Mejora la usabilidad */
+    width: 300px; /* Define un tamaño fijo para más consistencia */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Agrega una sombra para visibilidad */
+    border-radius: 8px; /* Bordes redondeados para una mejor apariencia */
+    z-index: 999; /* Asegúrate de que esté encima del mapa */
+}
+
+.search-container input {
+    width: 100%; /* El input debe ocupar todo el ancho del contenedor */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+/* Contenedor de búsqueda */
+.search-container {
+    background-color: #1c1c1c;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Campo de entrada de búsqueda */
+  .search-input {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #292929;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .search-input::placeholder {
+    color: #888;
+  }
+  
+  .search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Resultados de búsqueda (opcional, si quieres un diseño genérico para app-search-results) */
+  app-search-results {
+    width: 100%;
+    margin-top: 10px;
+    color: #fff;
+  }
+  

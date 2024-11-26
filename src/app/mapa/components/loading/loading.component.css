@@ -1,0 +1,24 @@
+.dark-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e1e1e; /* Fondo del contenedor */
+    border: 1px solid #333333; /* Borde sutil */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+    color: #ffffff; /* Texto claro */
+    width: 300px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Fondo oscuro */
+    color: #ffffff; /* Texto claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
