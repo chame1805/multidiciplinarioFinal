@@ -1,0 +1,13 @@
+<div *ngIf="isLoadingPlaces">
+    <h6>Cargando</h6>
+    <span>Espere porfavor ..</span>
+</div>
+
+<ul *ngIf="places.length >0">
+    <li *ngFor="let place of places"
+    (click)="flyto(place)">
+        <h6>{{place.text_es}}</h6>
+        <p>{{place.place_naame}}</p>
+        <button (click)="getDirections(place)">Direccione</button>
+    </li>
+</ul>

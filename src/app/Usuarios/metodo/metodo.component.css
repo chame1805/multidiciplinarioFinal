@@ -1,0 +1,81 @@
+/* Contenedor principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Estilo del resumen de pago */
+.payment-summary {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.payment-summary h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#pago {
+  font-size: 28px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.total-amount {
+  font-size: 36px;
+  color: #333;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Estilo de las rutas recientes */
+.recent-routes {
+  margin-top: 20px;
+}
+
+.recent-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recent-table th, .recent-table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.recent-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.recent-table td {
+  font-size: 18px;
+  color: #555;
+}
+
+.recent-table td.arrow {
+  font-size: 20px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.recent-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilo del botón de PayPal */
+#paypal {
+  margin-top: 20px;
+  text-align: center;
+}

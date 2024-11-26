@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="payment-summary">
+    <h1>Total a pagar</h1>
+    <div id="pago">
+      <p class="total-amount">$20.00</p>
+    </div>
+  </div>
+
+  <app-paypal-button></app-paypal-button>
+
+  <div class="recent-routes">
+    <table class="recent-table">
+      <thead>
+        <tr>
+          <th colspan="3">Reciente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Suchiapa<br>Tuxtla</td>
+          <td class="arrow">→</td>
+          <td>$20.00</td>
+        </tr>
+        <tr>
+          <td>Tuxtla<br>Suchiapa</td>
+          <td class="arrow">→</td>
+          <td>$20.00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div #paypal></div>
