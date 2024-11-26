@@ -26,7 +26,8 @@ export class ReservaComponent implements OnInit {
   constructor( 
     private  route: ActivatedRoute,
     private reservaService: ReservaService ,
-    private sharedDataService: SharedDataService // Inyecta el servicio
+    private sharedDataService: SharedDataService,
+    private router: Router 
 
   ) {}
 
@@ -114,7 +115,6 @@ export class ReservaComponent implements OnInit {
   
             console.log('Datos enviados al backend para actualizar la reserva:', reservaActualizada);
   
-            // Llamamos al servicio para actualizar la reserva
             this.reservaService.actualizarReserva(ultimaReserva.id, reservaActualizada).subscribe({
               next: (response) => {
                 console.log('Reserva actualizada con éxito:', response);
@@ -135,6 +135,16 @@ export class ReservaComponent implements OnInit {
                     this.resultadoFin = dataParaActualizar.asientos; // Actualizamos los asientos restantes en el frontend
                     this.cerrarModal();
                     alert('Reserva confirmada y asientos actualizados con éxito.');
+  
+                    // Redirigir a la vista de método con los datos relevantes
+                    this.router.navigate(['/metodo'], {
+                      queryParams: {
+                        cantidad: this.cantidad,
+                        fecha_reserva: reservaActualizada.fecha_reserva,
+                        forma_pago: reservaActualizada.forma_pago,
+                        monto: reservaActualizada.monto,
+                      }
+                    });
                   },
                   error: (error) => {
                     console.error('Error al actualizar los asientos disponibles:', error);
@@ -160,6 +170,7 @@ export class ReservaComponent implements OnInit {
       },
     });
   }
+  
   
 
   cerrarModal(): void {
