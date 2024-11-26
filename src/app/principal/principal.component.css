@@ -1,0 +1,97 @@
+/* Contenedor de la imagen que ocupa toda la pantalla */
+.imagen-fondo {
+    position: relative; /* Para posicionar elementos dentro del contenedor */
+    width: 100%;
+    height: 100vh; /* Ocupa toda la altura del viewport */
+    overflow: hidden; /* Evita que elementos sobresalgan */
+}
+
+.imagen-fondo img {
+    width: 100%;
+    height: 100%; /* Asegura que ocupe toda la pantalla */
+    object-fit: cover; /* Mantiene la proporción de la imagen mientras cubre el área */
+}
+
+/* Botón "Chofer" */
+#chofer {
+    position: absolute; /* Permite posicionarlo dentro del contenedor */
+    top: 20px; /* Espaciado desde la parte superior */
+    left: 20px; /* Espaciado desde el borde izquierdo */
+    background-color: rgba(0, 0, 0, 0.0); /* Fondo transparente */
+    color: rgba(255, 255, 255, 0.452); /* Color blanco semitransparente */
+    box-shadow: 1px 0px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10; 
+    width: 20%;
+    font-size: 20px;
+    transition: all 0.3s ease; /* Suaviza la transición */
+}
+
+#chofer:hover {
+    color: aliceblue;
+    background-color: rgba(0, 0, 0, 0.137); /* Fondo negro semitransparente */
+    border: 1px solid black;
+}
+
+/* Botón "Entrar" */
+#entrar {
+    position: absolute; 
+    top: 65%; 
+    left: 200px; 
+    background-color: rgba(255, 252, 252, 0.158); /* Fondo transparente */
+    color: rgba(255, 255, 255, 0.692); 
+    box-shadow: 1px 0px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10; 
+    width: 20%;
+    transition: all 0.3s ease; /* Suaviza la transición */
+}
+
+#entrar:hover {
+    color: aliceblue;
+    background-color: rgba(0, 0, 0, 0.137); /* Fondo negro semitransparente */
+    border: 1px solid black;
+}
+
+/* Títulos y subtítulos */
+.imagen-fondo h1,
+.imagen-fondo h2,
+.imagen-fondo h3 {
+    color: antiquewhite;
+    margin: 0;
+    position: absolute;
+}
+
+.imagen-fondo h1 {
+    top: 30%;
+    left: 200px;
+    font-size: 70px;
+}
+
+.imagen-fondo h3 {
+    top: 42%;
+    left: 200px;
+    font-size: 40px;
+}
+
+.imagen-fondo h2 {
+    top: 50%;
+    left: 200px;
+    font-size: 30px;
+}
+
+/* Configuración global */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+#conteiner {
+    /* Puedes agregar estilos adicionales si es necesario */
+}

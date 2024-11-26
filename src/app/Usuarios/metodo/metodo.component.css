@@ -1,0 +1,91 @@
+/* Contenedor principal */
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Estilo del resumen de pago */
+.payment-summary {
+  padding: 20px 0;
+  margin-bottom: 30px;
+}
+
+.payment-summary h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#pago {
+  font-size: 32px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.total-amount {
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo del botón de PayPal */
+#paypal {
+  margin-top: 20px;
+}
+
+#paypal .paypal-button {
+  display: inline-block;
+  background-color: #ffc439;
+  border: none;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#paypal .paypal-button:hover {
+  background-color: #e0a800;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de tarjeta */
+#paypal .card-button {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #333;
+  color: #fff;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#paypal .card-button:hover {
+  background-color: #444;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo del texto inferior */
+#paypal .footer-text {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
+}

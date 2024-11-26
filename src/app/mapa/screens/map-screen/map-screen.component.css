@@ -1,0 +1,23 @@
+.main-container {
+    position: relative; /* Necesario para que los elementos dentro se puedan posicionar de manera absoluta */
+  }
+  
+  .back-button {
+    position: absolute;
+    top: 50%; /* Centra el botón verticalmente */
+    left: 50%; /* Centra el botón horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para que el botón esté completamente centrado */
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10; /* Asegura que el botón esté encima de otros elementos */
+  }
+  
+  .back-button:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Cambia color al pasar el mouse */
+  }
+  

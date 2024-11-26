@@ -1,0 +1,11 @@
+<app-header-c></app-header-c>
+<div class="comprobante-container">
+  <h3>Pasajeros:</h3>
+  <ul>
+    <li *ngFor="let pasajero of pasajeros">
+      <strong>Nombre:</strong> {{ pasajero.name }},
+      <strong>Origen:</strong> {{ pasajero.origen }},
+      <strong>Destino:</strong> {{ pasajero.destino }}
+    </li>
+  </ul>
+</div>
