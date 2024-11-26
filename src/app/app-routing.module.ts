@@ -12,11 +12,13 @@ import { PrincipalComponent } from './principal/principal.component';
 import { CardHorarioComponent } from './Chofer/card-horarios/card-horarios.component';
 import path from 'path';
 import { MapScreenComponent } from './mapa/screens/map-screen/map-screen.component';
+import { ComprobanteComponent } from './Usuarios/comprobante/comprobante.component';
 
 const routes: Routes = [
   {path: '', component:PrincipalComponent},
   {path: 'inicio', component:LoginComponent},
   {path:'login', component:PrincipalComponent},
+  {path :'comprobante', component:ComprobanteComponent},
   {path:'registro', component:RegistroComponent},
   {path: 'horario', component:UsuarioHorarioComponent},
   {path: 'reserva', component:ReservaComponent},

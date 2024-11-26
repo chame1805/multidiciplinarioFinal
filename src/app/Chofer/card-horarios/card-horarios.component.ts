@@ -130,6 +130,10 @@ export class CardHorarioComponent implements OnInit {
       console.error('No se encontró el horario con el id:', id);
     }
   }
+  verReservas(id :number): void{
+    this.router.navigate(['./comprobante'])
+
+  }
   
   
   

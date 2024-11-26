@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { HeaderComponent } from '../header/header.component';
 import { HeadInicioComponent } from '../head-inicio/head-inicio.component';
+import { HeaderCComponent } from '../Chofer/header-c/header-c.component';
 
 
 
@@ -14,7 +15,8 @@ import { HeadInicioComponent } from '../head-inicio/head-inicio.component';
     LoginComponent,
     RegistroComponent,
     HeaderComponent,
-    HeadInicioComponent
+    HeadInicioComponent,
+    HeaderCComponent
   ],
   imports: [
     CommonModule,
