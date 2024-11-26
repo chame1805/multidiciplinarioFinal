@@ -3,6 +3,7 @@ import { ReservaService } from '../../service/reserva.service';
 import { ActivatedRoute } from '@angular/router';
 import { RegistroRutaService } from '../../service/registro-ruta.service';
 import { Router } from '@angular/router';
+import { SharedDataService } from '../../service/total.service';
 
 @Component({
   selector: 'app-reserva',
@@ -24,7 +25,10 @@ export class ReservaComponent implements OnInit {
 
   constructor( 
     private  route: ActivatedRoute,
-    private reservaService: ReservaService ) {}
+    private reservaService: ReservaService ,
+    private sharedDataService: SharedDataService // Inyecta el servicio
+
+  ) {}
 
     ngOnInit(): void {
       this.route.queryParams.subscribe(params => {
@@ -58,6 +62,7 @@ export class ReservaComponent implements OnInit {
 
   reservar(): void {
     if (this.cantidad > 0 && this.cantidad <= this.resultadoFin) {
+      this.sharedDataService.setCantidad(this.cantidad); // Actualiza el valor en el servicio
       this.mostrarConfirmacion = true;
       this.mensajeModal = `¿Confirmas la reserva de ${this.cantidad} asientos?`;
     } else {
