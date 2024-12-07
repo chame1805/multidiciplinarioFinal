@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div id="general">
+    <h1>Pago con Tarjeta</h1>
+  
+    <div id="nombre">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" [(ngModel)]="datos.nombre" placeholder="Nombre completo" name="nombre" required />
+    </div>
+  
+    <div id="tarjeta">
+      <label for="cuenta">Número de Tarjeta:</label>
+      <input
+        type="text"
+        id="cuenta"
+        [(ngModel)]="datos.cuenta"
+        (input)="formatearCuenta($event)"
+        placeholder="****-****-****-****"
+        maxlength="19"
+        name="cuenta"
+        
+        required/>
+    </div>
+  
+    <div id="ex">
+      <label for="fecha">Fecha de Expiración (MM/AA):</label>
+      <input
+        type="text"
+        id="fecha"
+        [(ngModel)]="datos.fecha"
+        (input)="formateFecha($event)"
+        placeholder="MM/AA"
+        maxlength="5"
+        name="fecha"
+        required
+      />
+    </div>
+  
+    <div id="codigo">
+      <label for="seguridad">Código de Seguridad:</label>
+      <input
+        type="text"
+        id="seguridad"
+        [(ngModel)]="datos.seguridad"
+        placeholder="CVC"
+        maxlength="4"
+        name="seguridad"
+        required
+      />
+    </div>
+    
+  
+    <button id="bu" type="button" (click)="envioDatos()">Enviar</button>
+  </div>
+  

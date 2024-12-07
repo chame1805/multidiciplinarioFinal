@@ -1,0 +1,13 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="payment-summary">
+    <h1>Total a pagar</h1>
+    <div id="pago">
+      <p class="total-amount">${{ totalAmount }}</p>
+    </div>
+  </div>
+
+  <!-- Enviamos totalAmount a PaypalButtonComponent -->
+  <app-paypal-button [totalAmount]="totalAmount" id="paypal"></app-paypal-button>
+</div>

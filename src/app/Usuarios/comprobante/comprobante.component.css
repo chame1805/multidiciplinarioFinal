@@ -1,0 +1,43 @@
+.comprobante-container {
+    background-color: #f9f9f9; /* Fondo claro */
+    border: 1px solid #ddd; /* Borde tenue */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 16px; /* Espaciado interno */
+    margin: 20px; /* Espaciado externo */
+    font-family: 'Arial', sans-serif; /* Fuente legible */
+  }
+  
+  .comprobante-container h3 {
+    color: #333; /* Título en color oscuro */
+    margin-bottom: 12px; /* Separación del título */
+  }
+  
+  .comprobante-container ul {
+    list-style-type: none; /* Eliminar los marcadores predeterminados */
+    padding: 0; /* Sin espacio adicional */
+    margin: 0;
+  }
+  
+  .comprobante-container li {
+    background-color: #fff; /* Fondo blanco para cada ítem */
+    margin-bottom: 10px; /* Separación entre ítems */
+    padding: 10px 15px; /* Espaciado interno */
+    border-radius: 6px; /* Bordes redondeados */
+    border: 1px solid #ddd; /* Borde tenue */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .comprobante-container li:hover {
+    transform: translateY(-3px); /* Levantar al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  }
+  
+  .comprobante-container li strong {
+    color: #555; /* Resaltar etiquetas */
+  }
+  
+  .comprobante-container li:nth-child(odd) {
+    background-color: #f4f4f4; /* Color alternado para filas impares */
+  }
+      
